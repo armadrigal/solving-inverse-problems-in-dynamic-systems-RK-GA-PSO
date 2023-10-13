@@ -15,3 +15,10 @@ class genetic_algorithm:
         self._selection_size = int(np.round((selection/2)*population_size))*2
         self._mutation_fraction = mutation_fraction
         self._initiated_population = False
+
+    def initialize_population(self):
+        population = np.random.uniform(
+            self.ecosystem[0], self.ecosystem[1], 
+            (self.population_size,self._dimension)
+        )
+        return population
