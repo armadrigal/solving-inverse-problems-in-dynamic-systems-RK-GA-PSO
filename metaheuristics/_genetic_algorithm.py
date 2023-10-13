@@ -54,3 +54,17 @@ class genetic_algorithm:
         son_2[crossover_point:self._dimension] = parent_1[crossover_point:self._dimension] 
 
         return son_1, son_2
+
+    def crossover(self, selection):
+
+        random = np.random.permutation(np.arange(self._selection_size))
+        #print('llego hasta aqui')
+        #print(random)
+        for i in range(int(self._selection_size/2)):
+            parent_1 = selection[random[i]]
+            parent_2 = selection[random[i+int(self._selection_size/2)]]
+            son_1, son_2 = self.single_point_crossover(parent_1, parent_2)
+            selection[random[i]] = son_1
+            selection[random[i+int(self._selection_size/2)]] = son_2
+
+        return selection
