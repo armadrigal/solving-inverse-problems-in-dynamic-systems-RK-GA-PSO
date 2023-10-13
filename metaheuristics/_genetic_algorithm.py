@@ -77,3 +77,34 @@ class genetic_algorithm:
                     population[i,j] = np.random.uniform(self.ecosystem[0], self.ecosystem[1])
         
         return population
+
+    def evolve(self, n_generations = 1):
+
+        if self._initiated_population == False:
+            population = self.initialize_population()
+            self._initiated_population = True
+
+        fitness = self.calculate_fitness(population)
+        best_fitness = np.max(fitness)
+        best_optimum = population[np.argmax(fitness)]
+        for i in range(n_generations):
+            selection = self.roulette_selection(population, fitness)
+            crossover = self.crossover(selection)
+            #reemplazar
+            fitness_order = np.argsort(fitness)
+            population[fitness_order[-self._selection_size:]] = crossover
+            ##########
+            population = self.mutation(population, self._mutation_fraction)
+            fitness = self.calculate_fitness(population)
+            max_index = np.argmax(fitness)
+
+            optimum = population[max_index]
+            fitness_optimum = fitness[max_index]
+
+            if fitness_optimum > best_fitness:
+                best_optimum = optimum
+                best_fitness = fitness_optimum
+
+                print('Generation: ', i , 'Optimum: ', optimum, 'Fitness', fitness_optimum)
+
+        return best_optimum, best_fitness
