@@ -28,3 +28,15 @@ class genetic_algorithm:
         for i in range(len(population)):
             fitness[i] = self.fitness_function(*list(population[i,:]))
         return fitness
+
+    def roulette_selection(self, population, fitness):
+        selection = np.zeros((self._selection_size,self._dimension))
+        probability = np.exp(fitness)/np.sum(np.exp(fitness))
+        
+        for i, random in enumerate(np.random.rand(self._selection_size)):
+            for j in range(len(probability)):
+                sum_proba = np.sum(probability[0:j])
+                if random >= sum_proba and random < sum_proba + probability[j]:
+                    selection[i,:] = population[j,:]
+
+        return selection
