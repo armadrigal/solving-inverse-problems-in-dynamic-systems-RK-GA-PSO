@@ -68,3 +68,12 @@ class genetic_algorithm:
             selection[random[i+int(self._selection_size/2)]] = son_2
 
         return selection
+
+    def mutation(self, population, mutation_fraction):
+
+        for i, individual in enumerate(population):
+            for j, _ in enumerate(individual):
+                if np.random.rand() < mutation_fraction:
+                    population[i,j] = np.random.uniform(self.ecosystem[0], self.ecosystem[1])
+        
+        return population
