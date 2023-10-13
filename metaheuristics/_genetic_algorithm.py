@@ -22,3 +22,9 @@ class genetic_algorithm:
             (self.population_size,self._dimension)
         )
         return population
+
+    def calculate_fitness(self, population):
+        fitness = np.zeros(len(population))
+        for i in range(len(population)):
+            fitness[i] = self.fitness_function(*list(population[i,:]))
+        return fitness
