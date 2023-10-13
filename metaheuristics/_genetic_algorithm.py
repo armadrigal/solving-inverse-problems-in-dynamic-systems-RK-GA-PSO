@@ -40,3 +40,17 @@ class genetic_algorithm:
                     selection[i,:] = population[j,:]
 
         return selection
+
+    def single_point_crossover(self, parent_1, parent_2):
+
+        son_1 = np.zeros(self._dimension)
+        son_2 = np.zeros(self._dimension)
+
+        crossover_point = np.random.randint(self._dimension)
+
+        son_1[0:crossover_point] = parent_1[0:crossover_point] 
+        son_1[crossover_point:self._dimension] = parent_2[crossover_point:self._dimension]
+        son_2[0:crossover_point] = parent_2[0:crossover_point] 
+        son_2[crossover_point:self._dimension] = parent_1[crossover_point:self._dimension] 
+
+        return son_1, son_2
