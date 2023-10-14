@@ -34,3 +34,10 @@ class PSO:
         index_max = np.argmax(self._fitness)
         self._g_best = self._positions[index_max]
         self._fitness_g_best = self._fitness[index_max]
+
+    def update_p_best(self):
+
+        for i, fitness in enumerate(self._fitness):
+            if fitness > self._fitness_p_best[i]:
+                self._fitness_p_best[i] = fitness
+                self._p_best = self._positions[i]
