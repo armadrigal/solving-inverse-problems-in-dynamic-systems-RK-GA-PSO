@@ -25,3 +25,12 @@ class PSO:
 
         for i in range(self.n_particles):
             self._fitness[i] = self.objetive_fun(*list(self._positions[i]))
+
+    def initialize_best_positions(self):
+
+        self._p_best = self._positions
+        self._fitness_p_best = self._fitness
+
+        index_max = np.argmax(self._fitness)
+        self._g_best = self._positions[index_max]
+        self._fitness_g_best = self._fitness[index_max]
