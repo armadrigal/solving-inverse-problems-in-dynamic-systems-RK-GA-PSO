@@ -48,3 +48,11 @@ class PSO:
         if self._fitness[index_max] > self._fitness_g_best:
             self._fitness_g_best = self._fitness[index_max]
             self._g_best = self._positions[index_max]
+
+    def update_velocities(self):
+
+        vel = self.w*self._velocities +\
+            self.c_1*np.random.rand()*(self._p_best - self._positions) +\
+            self.c_2*np.random.rand()*(self._g_best - self._positions)
+
+        self._velocities = vel
