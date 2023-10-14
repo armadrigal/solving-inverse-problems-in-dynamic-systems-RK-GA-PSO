@@ -20,3 +20,8 @@ class PSO:
             -1.0, 1.0, (self.n_particles, self._dimension)
         )
         self._fitness = np.zeros(self.n_particles)
+
+    def calculate_fitnnes(self):
+
+        for i in range(self.n_particles):
+            self._fitness[i] = self.objetive_fun(*list(self._positions[i]))
