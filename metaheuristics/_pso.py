@@ -10,3 +10,13 @@ class PSO:
         self.c_2 = c_2
         self.interval = interval
         self._dimension = len(inspect.getargspec(self.objetive_fun).args)
+
+    def initialize_swarm(self):
+
+        self._positions = np.random.normal(
+            self.interval[0], self.interval[1], (self.n_particles, self._dimension)
+        )
+        self._velocities = np.random.normal(
+            -1.0, 1.0, (self.n_particles, self._dimension)
+        )
+        self._fitness = np.zeros(self.n_particles)
