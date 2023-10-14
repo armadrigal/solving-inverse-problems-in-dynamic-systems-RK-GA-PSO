@@ -60,3 +60,18 @@ class PSO:
     def update_positions(self):
 
         self._positions += self._velocities
+
+    def fit(self, n_iterations=10):
+
+        self.initialize_swarm()
+        self.calculate_fitnnes()
+        self.initialize_best_positions()
+
+        for i in range(1,n_iterations+1):
+            self.update_velocities()
+            self.update_positions()
+            self.calculate_fitnnes()
+            self.update_p_best()
+            self.update_g_best()
+
+            print('Iteration: ', i, 'Gbest: ', self._g_best, 'Fitness:', self._fitness_g_best)
