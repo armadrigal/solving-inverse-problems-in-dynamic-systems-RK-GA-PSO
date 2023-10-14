@@ -56,3 +56,7 @@ class PSO:
             self.c_2*np.random.rand()*(self._g_best - self._positions)
 
         self._velocities = vel
+
+    def update_positions(self):
+
+        self._positions += self._velocities
